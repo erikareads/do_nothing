@@ -1,6 +1,6 @@
 #!/usr/bin/env elixir
 
-Mix.install([{:do_nothing, path: "."}])
+Mix.install([{:do_nothing, git: "git@github.com:erikareads/do_nothing.git"}])
 
 defmodule Tidy do
   use DoNothing
