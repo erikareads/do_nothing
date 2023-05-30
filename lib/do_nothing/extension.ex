@@ -45,21 +45,14 @@ defmodule DoNothing.Extension do
           schema: [
             inputs: [type: {:list, :atom}, required: false],
             output: [type: :atom, required: false],
-            execute: [type: {:custom, DoNothing.Extension, :is_function, []}, required: true]
+            execute: [type: :fun, required: true]
           ]
         }
       ]
     ],
+    singleton_entity_keys: [:run],
     schema: @step_schema
   }
-
-  def is_function(value) when Kernel.is_function(value) do
-    {:ok, value}
-  end
-
-  def is_function(_) do
-    {:error, "Not a function"}
-  end
 
   @procedure %Spark.Dsl.Section{
     # The DSL constructor will be `procedure`

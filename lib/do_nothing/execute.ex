@@ -80,8 +80,8 @@ defmodule DoNothing.Execute do
   @spec step_type(DoNothing.Extension.Step.t()) :: :manual | :automated
   def step_type(step) do
     case step.run do
-      [%DoNothing.Extension.Run{}] -> :automated
-      [] -> :manual
+      %DoNothing.Extension.Run{} -> :automated
+      nil -> :manual
       _ -> raise "Can't have more than one run in a step"
     end
   end
@@ -100,7 +100,7 @@ defmodule DoNothing.Execute do
     put_step_title(step)
     put_automated_step_id(step)
 
-    [run] = step.run
+    run = step.run
 
     output =
       case run.execute do
