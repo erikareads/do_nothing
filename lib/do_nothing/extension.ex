@@ -57,8 +57,7 @@ defmodule DoNothing.Extension do
 
   @doc false
   def confirm_arity(run) do
-    function_info = run.execute |> :erlang.fun_info()
-    function_arity = function_info[:arity]
+    {:arity, function_arity} = Function.info(run.execute, :arity)
     inputs_length = length(run.inputs)
 
     if function_arity === inputs_length do
