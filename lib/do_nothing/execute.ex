@@ -82,7 +82,7 @@ defmodule DoNothing.Execute do
     case step.run do
       %DoNothing.Extension.Run{} -> :automated
       nil -> :manual
-      _ -> raise "Can't have more than one run in a step"
+      _ -> raise "should have failed at compile step"
     end
   end
 
