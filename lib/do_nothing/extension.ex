@@ -55,6 +55,7 @@ defmodule DoNothing.Extension do
     schema: @step_schema
   }
 
+  @doc false
   def confirm_arity(run) do
     function_info = run.execute |> :erlang.fun_info()
     function_arity = function_info[:arity]

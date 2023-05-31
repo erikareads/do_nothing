@@ -1,4 +1,7 @@
 defmodule DoNothing.IO.StdIO do
+  @moduledoc """
+  Default implementations for the `m:DoNothing.IO` callbacks
+  """
   @behaviour DoNothing.IO
 
   @impl DoNothing.IO
