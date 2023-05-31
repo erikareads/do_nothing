@@ -1,6 +1,6 @@
 defmodule DoNothing.Formatter.Markdown do
   @moduledoc """
-  Default implementations for the `m:DoNothing.Formatter` callbacks.
+  Default implementations for the `DoNothing.Formatter` callbacks.
   """
   alias DoNothing.Formatter
   @behaviour Formatter
