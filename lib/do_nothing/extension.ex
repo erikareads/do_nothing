@@ -56,13 +56,15 @@ defmodule DoNothing.Extension do
   }
 
   def confirm_arity(run) do
-    function_info = run.execute |> :erlang.fun_info
-    function_arity = function_info[:arity] 
+    function_info = run.execute |> :erlang.fun_info()
+    function_arity = function_info[:arity]
     inputs_length = length(run.inputs)
+
     if function_arity === inputs_length do
       {:ok, run}
     else
-      {:error, "execute has arity #{function_arity}, but inputs has length #{inputs_length}, these must match"}
+      {:error,
+       "execute has arity #{function_arity}, but inputs has length #{inputs_length}, these must match"}
     end
   end
 
