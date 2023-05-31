@@ -46,13 +46,25 @@ defmodule DoNothing.Extension do
             inputs: [type: {:list, :atom}, required: false],
             output: [type: :atom, required: false],
             execute: [type: :fun, required: true]
-          ]
+          ],
+          transform: {DoNothing.Extension, :confirm_arity, []}
         }
       ]
     ],
     singleton_entity_keys: [:run],
     schema: @step_schema
   }
+
+  def confirm_arity(run) do
+    function_info = run.execute |> :erlang.fun_info
+    function_arity = function_info[:arity] 
+    inputs_length = length(run.inputs)
+    if function_arity === inputs_length do
+      {:ok, run}
+    else
+      {:error, "execute has arity #{function_arity}, but inputs has length #{inputs_length}, these must match"}
+    end
+  end
 
   @procedure %Spark.Dsl.Section{
     # The DSL constructor will be `procedure`
