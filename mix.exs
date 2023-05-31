@@ -22,7 +22,8 @@ defmodule DoNothing.MixProject do
   defp deps do
     [
       {:spark, ">= 0.0.0"},
-      {:gradient, github: "esl/gradient", only: [:dev], runtime: false}
+      {:gradient, github: "esl/gradient", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
     ]
   end
 end
