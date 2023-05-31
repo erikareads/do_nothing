@@ -9,6 +9,7 @@ defmodule DoNothing.MixProject do
   def project do
     [
       app: :do_nothing,
+      name: "DoNothing",
       description: @description,
       version: @version,
       elixir: "~> 1.14",
