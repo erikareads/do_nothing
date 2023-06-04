@@ -26,7 +26,7 @@ DoNothing.procedure(
 
 Running this script will output the following:
 
-```sh
+```
 # Example procedure
 
 A description of the procedure...
