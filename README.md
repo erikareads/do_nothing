@@ -7,26 +7,43 @@ A gradual automation scripting framework and DSL.
 ```elixir
 #!/usr/bin/env elixir
 
-Mix.install([{:do_nothing, git: "git@github.com:erikareads/do_nothing.git"}])
+Mix.install([{:do_nothing, github: "erikareads/do_nothing", tag: "v0.1.0"}])
 
-defmodule MyScript do
-  use DoNothing
+DoNothing.procedure(
+  title: "Example procedure", 
+  description: "A description of the procedure..."
+)
+|> DoNothing.add_step(
+  title: "A first step", 
+  instructions: "The instructions to follow for the first step."
+)
+|> DoNothing.add_step(
+  title: "A second step", 
+  instructions: "The instructions..."
+)
+|> DoNothing.execute()
+```
 
-  title "Example procedure"
-  description "A description of the procedure..."
+Running this script will output the following:
 
-  step do
-    id :first_step
-    title "A first step"
-    instructions "The instructions to follow for the first step."
-  end
+```sh
+# Example procedure
 
-  step do
-    id :second_step
-    title "A second step"
-    instructions "The instructions..."
-  end
-end
+A description of the procedure...
 
-DoNothing.execute(MyScript)
+[Enter] to begin
+
+## A first step
+
+The instructions to follow for the first step.
+
+[Enter] when done
+
+## A second step
+
+The instructions...
+
+[Enter] when done
+
+done!
 ```
