@@ -26,28 +26,28 @@ defmodule DoNothing.Execute do
     config.formatter.step_title(step, state) |> config.io.output()
     config.formatter.automated_note(step, state) |> config.io.output()
 
-    run = step.run
+    automation = step.automation
 
     result =
-      case run.execute do
+      case automation.execute do
         {module, function} ->
-          apply(module, function, get_inputs(run, state))
+          apply(module, function, get_inputs(automation, state))
 
         function ->
-          apply(function, get_inputs(run, state))
+          apply(function, get_inputs(automation, state))
       end
 
-    if not is_nil(run.output) do
-      config.formatter.automated_output(run, result, state) |> config.io.output()
+    if not is_nil(automation.output) do
+      config.formatter.automated_output(automation, result, state) |> config.io.output()
 
-      Map.put(state, run.output, result)
+      Map.put(state, automation.output, result)
     else
       state
     end
   end
 
-  defp get_inputs(run, state) do
-    Enum.map(run.inputs, &Map.get(state, &1))
+  defp get_inputs(automation, state) do
+    Enum.map(automation.inputs, &Map.fetch!(state, &1))
   end
 
   defp handle_manual(step, state, config) do
