@@ -32,9 +32,9 @@ defmodule DoNothing.Formatter.Markdown do
   end
 
   @impl Formatter
-  def automated_note(step, _state) do
+  def automated_note(_step, _state) do
     """
-    Executing step `#{step.id}` automatically.
+    Executing step automatically.
 
     """
   end
@@ -56,10 +56,10 @@ defmodule DoNothing.Formatter.Markdown do
   end
 
   @impl Formatter
-  def automated_output(run, result, _state) do
+  def automated_output(automation, result, _state) do
     """
     **Outputs**: 
-      - `#{run.output}`: #{inspect(result)}
+      - `#{automation.output}`: #{inspect(result)}
 
     """
   end

@@ -1,7 +1,7 @@
 defmodule DoNothing.MixProject do
   use Mix.Project
 
-  @version "0.0.2"
+  @version "0.1.0"
   @source_url "https://github.com/erikareads/do_nothing"
 
   @description "A gradual automation scripting framework and DSL."
@@ -56,9 +56,9 @@ defmodule DoNothing.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:spark, "~> 1.1.13"},
       {:gradient, github: "esl/gradient", only: [:dev], runtime: false},
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 end

@@ -1,6 +1,6 @@
 defmodule DoNothing.Formatter do
-  alias DoNothing.Extension.Run
-  alias DoNothing.Extension.Step
+  alias DoNothing.Automation
+  alias DoNothing.Step
 
   @type state :: map()
 
@@ -16,7 +16,7 @@ defmodule DoNothing.Formatter do
 
   @callback automated_note(step :: Step.t(), state :: state()) :: String.t()
 
-  @callback automated_output(run :: Run.t(), result :: any(), state :: state()) ::
+  @callback automated_output(automation :: Automation.t(), result :: any(), state :: state()) ::
               String.t()
 
   @callback completed(procedure :: DoNothing.Execute.Procedure.t(), state :: state()) ::
